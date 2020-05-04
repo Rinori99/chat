@@ -1,0 +1,16 @@
+server/repositories/ConversationRepo.class
+server/controllers/MessageController.class
+server/websocket/CustomHandshakeHandler.class
+server/services/MessageService.class
+server/DTOs/ChatMessageDTO.class
+server/models/ChatMessage.class
+server/repositories/MessageRepo.class
+server/models/ChatUser.class
+server/services/ConversationService.class
+server/services/ConversationServiceImpl.class
+server/models/Conversation.class
+server/ChatApplication.class
+server/websocket/StompPrincipal.class
+server/websocket/WebSocketConfig.class
+server/controllers/ConversationController.class
+server/services/MessageServiceImpl.class
