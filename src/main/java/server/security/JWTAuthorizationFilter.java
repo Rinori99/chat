@@ -16,16 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static server.security.SecurityConstants.*;
+
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    @Value("${HEADER_STRING}")
-    private String headerKey;
 
-    @Value("${TOKEN_PREFIX}")
-    private String tokenPrefix;
-
-    @Value("${SECRET}")
-    private String secret;
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
@@ -33,8 +28,8 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String header = request.getHeader(headerKey);
-        if(header == null || !header.startsWith(tokenPrefix)) {
+        String header = request.getHeader(HEADER_STRING);
+        if(header == null || !header.startsWith(TOKEN_PREFIX)) {
             chain.doFilter(request, response);
             return;
         }
@@ -44,11 +39,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(headerKey);
+        String token = request.getHeader(HEADER_STRING);
         if(token != null) {
-            String userId = JWT.require(Algorithm.HMAC512(secret.getBytes()))
+            String userId = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
                     .build()
-                    .verify(token.replace(tokenPrefix, ""))
+                    .verify(token.replace(TOKEN_PREFIX, ""))
                     .getSubject();
             if(userId != null) {
                 PerRequestIdStorage.setUserId(userId);

@@ -2,6 +2,7 @@ package server.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import server.DTOs.ChatUserDTO;
 import server.DTOs.OnlineMeetingDTO;
@@ -10,7 +11,8 @@ import server.services.OnlineMeetingService;
 
 import java.util.List;
 
-@RestController("/conversations")
+@RestController
+@RequestMapping("/conversations")
 public class ConversationController {
 
     private ConversationService conversationService;
