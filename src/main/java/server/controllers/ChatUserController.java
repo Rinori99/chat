@@ -10,7 +10,7 @@ import server.services.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("//chat-users")
+@RequestMapping("/chat-users")
 public class ChatUserController {
 
     private UserService userService;
