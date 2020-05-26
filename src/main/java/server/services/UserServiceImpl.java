@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
         return conversationDTOList;
     }
 
+    @Override
+    public void saveUser(String id, String firstName, String lastName, String role) {
+        userRepo.save(new ChatUser(id, firstName, lastName, role));
+    }
+
 }

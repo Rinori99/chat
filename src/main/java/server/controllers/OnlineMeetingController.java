@@ -7,4 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/online-meetings")
 public class OnlineMeetingController {
 
+
+
 }

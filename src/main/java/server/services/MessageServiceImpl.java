@@ -29,11 +29,6 @@ public class MessageServiceImpl implements MessageService {
     @Override
     @Async("threadPoolTaskExecutor")
     public void saveMessage(String senderId, String conversationId, String content, Timestamp timeStamp) {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         ChatUser sender = userService.getUserById(senderId);
         Conversation conversation = conversationService.getConversationById(conversationId);
         ChatMessage message = new ChatMessage(UUID.randomUUID().toString(), sender, conversation, content);

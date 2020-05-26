@@ -11,4 +11,6 @@ public interface UserService {
 
     List<ConversationDTO> getConversationsByUserId(String userId);
 
+    void saveUser(String id, String firstName, String lastName, String role);
+
 }
