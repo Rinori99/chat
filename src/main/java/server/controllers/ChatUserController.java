@@ -19,7 +19,7 @@ public class ChatUserController {
         this.userService = userService;
     }
 
-    @GetMapping("/conversations/")
+    @GetMapping("/conversations")
     public List<ConversationDTO> getConversationsByUserId() {
         return userService.getConversationsByUserId(PerRequestIdStorage.getUserId());
     }

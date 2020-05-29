@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @EnableAsync
-@EnableEurekaClient
+//@EnableEurekaClient
 @SpringBootApplication
 public class ChatApplication extends SpringBootServletInitializer {
 
