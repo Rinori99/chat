@@ -13,4 +13,6 @@ public interface UserService {
 
     void saveUser(String id, String firstName, String lastName, String role);
 
+    ChatUser getUserByEmail(String email);
+
 }

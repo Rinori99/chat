@@ -6,6 +6,7 @@ public class ChatUserDTO {
     private String firstName;
     private String lastName;
     private String chatRole;
+    private String email;
 
     public ChatUserDTO() {}
 
@@ -20,6 +21,14 @@ public class ChatUserDTO {
         this.firstName = firstName;
         this.lastName = lastName;
         this.chatRole = chatRole;
+    }
+
+    public ChatUserDTO(String id, String firstName, String lastName, String chatRole, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.chatRole = chatRole;
+        this.email = email;
     }
 
     public String getId() {
@@ -54,4 +63,11 @@ public class ChatUserDTO {
         this.chatRole = chatRole;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

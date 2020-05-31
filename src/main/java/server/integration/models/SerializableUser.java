@@ -10,15 +10,18 @@ public final class SerializableUser implements Serializable {
     private final String firstName;
     private final String lastName;
     private final String role;
+    private final String email;
 
     public SerializableUser(@JsonProperty("id") String id,
                             @JsonProperty("firstName") String firstName,
                             @JsonProperty("lastName") String lastName,
-                            @JsonProperty("role") String role) {
+                            @JsonProperty("role") String role,
+                            @JsonProperty("email") String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+        this.email = email;
     }
 
     public String getId() {
@@ -37,6 +40,10 @@ public final class SerializableUser implements Serializable {
         return role;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     @Override
     public String toString() {
         return "SerializableUser{" +
@@ -44,6 +51,7 @@ public final class SerializableUser implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", role='" + role + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 

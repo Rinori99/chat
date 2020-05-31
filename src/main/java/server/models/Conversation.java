@@ -30,6 +30,11 @@ public class Conversation {
         this.id = id;
     }
 
+    public Conversation(String id, Date dateCreated) {
+        this.id = id;
+        this.dateCreated = dateCreated;
+    }
+
     public String getId() {
         return id;
     }

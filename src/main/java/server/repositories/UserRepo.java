@@ -7,4 +7,6 @@ import server.models.ChatUser;
 @Repository
 public interface UserRepo extends JpaRepository<ChatUser, String> {
 
+    ChatUser findByEmail(String email);
+
 }

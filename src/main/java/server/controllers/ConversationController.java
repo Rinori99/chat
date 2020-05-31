@@ -1,10 +1,8 @@
 package server.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import server.DTOs.ChatUserDTO;
+import server.DTOs.ConversationDTO;
 import server.DTOs.OnlineMeetingDTO;
 import server.services.ConversationService;
 import server.services.OnlineMeetingService;
@@ -21,6 +19,11 @@ public class ConversationController {
     public ConversationController(ConversationService conversationService, OnlineMeetingService onlineMeetingService) {
         this.conversationService = conversationService;
         this.onlineMeetingService = onlineMeetingService;
+    }
+
+    @PostMapping
+    public ConversationDTO createConversation(@RequestParam("email") String email) {
+        return conversationService.createConversation(email);
     }
 
     @GetMapping("/{conversationId}/participants")

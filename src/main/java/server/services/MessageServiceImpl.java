@@ -11,6 +11,7 @@ import server.repositories.MessageRepo;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @Service
@@ -24,6 +25,11 @@ public class MessageServiceImpl implements MessageService {
         this.messageRepo = messageRepo;
         this.conversationService = conversationService;
         this.userService = userService;
+    }
+
+    @Override
+    public ChatMessage getMessageById(String messageId) {
+        return messageRepo.findById(messageId).orElseThrow(() -> new NoSuchElementException("Message not found!"));
     }
 
     @Override

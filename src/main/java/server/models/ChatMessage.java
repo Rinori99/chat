@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "chat_message")
-public class ChatMessage {
+public class ChatMessage implements Comparable<ChatMessage> {
 
     @Id
     @Column(name = "id")
@@ -72,6 +72,14 @@ public class ChatMessage {
 
     public void setTimeSent(Timestamp timeSent) {
         this.timeSent = timeSent;
+    }
+
+    @Override
+    public int compareTo(ChatMessage message) {
+        if(message == null) return 0;
+        else if(message.getTimeSent() == null) return 0;
+        else if(this.timeSent == null) return 0;
+        else return message.getTimeSent().compareTo(this.timeSent);
     }
 
 }

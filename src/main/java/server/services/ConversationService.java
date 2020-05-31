@@ -14,4 +14,6 @@ public interface ConversationService {
 
     List<ChatUserDTO> getUsersByConversationId(String conversationId);
 
+    ConversationDTO createConversation(String email);
+
 }

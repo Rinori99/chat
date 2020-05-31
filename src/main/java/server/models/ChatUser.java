@@ -20,6 +20,9 @@ public class ChatUser {
     @Column(name = "chat_role")
     private String chatRole;
 
+    @Column(name = "email")
+    private String email;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "conversation_participant",
@@ -41,6 +44,14 @@ public class ChatUser {
         this.firstName = firstName;
         this.lastName = lastName;
         this.chatRole = chatRole;
+    }
+
+    public ChatUser(String id, String firstName, String lastName, String chatRole, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.chatRole = chatRole;
+        this.email = email;
     }
 
     public String getId() {
@@ -81,6 +92,14 @@ public class ChatUser {
 
     public void setConversations(List<Conversation> conversations) {
         this.conversations = conversations;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

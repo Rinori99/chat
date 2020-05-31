@@ -41,4 +41,8 @@ public class UserServiceImpl implements UserService {
         userRepo.save(new ChatUser(id, firstName, lastName, role));
     }
 
+    @Override
+    public ChatUser getUserByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
 }
