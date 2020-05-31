@@ -21,7 +21,7 @@ $ git clone https://github.com/Rinori99/chat.git
 - Maven 3 or later
 - MySQL 8.0
 
-Have a database named *authentication* created:
+Have a database named *chat* created:
 ```python
 create database chat;
 ```
@@ -52,6 +52,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## Authors
 - Ilir Asllani
 - Jehona Konushefci
+- Mishel Canameri
 - Rinor Hajrizi
 - Vedat Apuk
 
