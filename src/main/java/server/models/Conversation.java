@@ -75,4 +75,12 @@ public class Conversation {
 //        this.onlineMeetings = onlineMeetings;
 //    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Conversation) {
+            return this.getId().equals(((Conversation)obj).getId());
+        }
+        return false;
+    }
+
 }

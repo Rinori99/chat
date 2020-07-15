@@ -25,10 +25,10 @@ public class ConversationMapper {
     }
 
     private static String getLastMessage(List<ChatMessage> messages) {
-        Collections.sort(messages);
-        if (messages.size() == 0) {
+        if (messages == null || messages.size() == 0) {
             return "No messages yet";
         } else {
+            Collections.sort(messages);
             return messages.get(0).getContent();
         }
     }

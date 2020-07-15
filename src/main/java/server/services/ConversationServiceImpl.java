@@ -15,12 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 @Service
 public class ConversationServiceImpl implements ConversationService {
 
     private ConversationRepo conversationRepo;
     private UserService userService;
+    private Supplier<UUID> uuidSupplier = UUID::randomUUID;
 
     public ConversationServiceImpl(ConversationRepo conversationRepo, UserService userService) {
         this.conversationRepo = conversationRepo;
@@ -55,9 +57,13 @@ public class ConversationServiceImpl implements ConversationService {
         List<ChatUser> participants = new ArrayList<>();
         participants.add(participant);
         participants.add(user);
-        Conversation conversation = new Conversation(UUID.randomUUID().toString(), new Date(System.currentTimeMillis()));
+        Conversation conversation = new Conversation(getUUID(), new Date(System.currentTimeMillis()));
         conversation.setParticipants(participants);
         return ConversationMapper.conversationToConversationDTO(conversationRepo.save(conversation));
+    }
+
+    private String getUUID() {
+        return uuidSupplier.get().toString();
     }
 
 }

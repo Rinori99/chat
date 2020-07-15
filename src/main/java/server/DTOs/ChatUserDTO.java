@@ -70,4 +70,13 @@ public class ChatUserDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof ChatUserDTO) {
+            return this.getId().equals(((ChatUserDTO)obj).getId());
+        }
+        return false;
+    }
+
 }
