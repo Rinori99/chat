@@ -1,5 +1,8 @@
 package server.DTOs;
 
+import server.annotations.ApiEntity;
+
+@ApiEntity
 public class ChatUserDTO {
 
     private String id;

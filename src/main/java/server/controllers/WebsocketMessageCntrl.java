@@ -4,20 +4,17 @@ import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import server.DTOs.ChatMessageDTO;
 import server.services.MessageService;
 
 import java.security.Principal;
-import java.util.List;
 
 @Controller
-public class WebsocketMessageController {
+public class WebsocketMessageCntrl {
 
     private MessageService messageService;
 
-    public WebsocketMessageController(MessageService messageService) {
+    public WebsocketMessageCntrl(MessageService messageService) {
         this.messageService = messageService;
     }
 

@@ -1,7 +1,10 @@
 package server.DTOs;
 
+import server.annotations.ApiEntity;
+
 import java.sql.Timestamp;
 
+@ApiEntity
 public class ChatMessageDTO {
 
     private String senderId;

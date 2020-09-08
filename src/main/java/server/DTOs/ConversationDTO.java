@@ -1,7 +1,10 @@
 package server.DTOs;
 
+import server.annotations.ApiEntity;
+
 import java.util.Date;
 
+@ApiEntity
 public class ConversationDTO {
 
     private String id;

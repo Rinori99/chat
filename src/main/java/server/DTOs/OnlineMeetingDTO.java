@@ -1,7 +1,10 @@
 package server.DTOs;
 
+import server.annotations.ApiEntity;
+
 import java.sql.Timestamp;
 
+@ApiEntity
 public class OnlineMeetingDTO {
 
     private String id;

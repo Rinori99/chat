@@ -18,8 +18,10 @@ public class ConversationMapper {
 
     private static String getOtherParticipantName(List<ChatUser> users) {
         String participantName = "";
-        for(ChatUser user : users) {
-            if(!user.getId().equals(PerRequestIdStorage.getUserId())) participantName = user.getFirstName() + " " + user.getLastName();
+        if (users != null) {
+            for(ChatUser user : users) {
+                if(!user.getId().equals(PerRequestIdStorage.getUserId())) participantName = user.getFirstName() + " " + user.getLastName();
+            }
         }
         return participantName;
     }

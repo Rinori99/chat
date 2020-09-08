@@ -9,6 +9,7 @@ import server.mappers.UserMapper;
 import server.models.ChatUser;
 import server.models.Conversation;
 import server.repositories.ConversationRepo;
+import server.repositories.UserRepo;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -22,11 +23,13 @@ public class ConversationServiceImpl implements ConversationService {
 
     private ConversationRepo conversationRepo;
     private UserService userService;
+    private UserRepo userRepo;
     private Supplier<UUID> uuidSupplier = UUID::randomUUID;
 
-    public ConversationServiceImpl(ConversationRepo conversationRepo, UserService userService) {
+    public ConversationServiceImpl(ConversationRepo conversationRepo, UserService userService, UserRepo userRepo) {
         this.conversationRepo = conversationRepo;
         this.userService = userService;
+        this.userRepo = userRepo;
     }
 
     @Override
@@ -52,14 +55,23 @@ public class ConversationServiceImpl implements ConversationService {
 
     @Override
     public ConversationDTO createConversation(String email) {
-        ChatUser participant = userService.getUserByEmail(email);
-        ChatUser user = userService.getUserById(PerRequestIdStorage.getUserId());
-        List<ChatUser> participants = new ArrayList<>();
-        participants.add(participant);
-        participants.add(user);
+        ChatUser invitedParticipant = userService.getUserByEmail(email);
+        if (invitedParticipant == null) {
+            throw new RuntimeException("User not found!");
+        }
+        ChatUser conversationCreator = userService.getUserById(PerRequestIdStorage.getUserId());
         Conversation conversation = new Conversation(getUUID(), new Date(System.currentTimeMillis()));
-        conversation.setParticipants(participants);
-        return ConversationMapper.conversationToConversationDTO(conversationRepo.save(conversation));
+        Conversation savedConversation = conversationRepo.save(conversation);
+        conversationCreator.getConversations().add(savedConversation);
+        userRepo.save(conversationCreator);
+        invitedParticipant.getConversations().add(savedConversation);
+        userRepo.save(invitedParticipant);
+
+        List<ChatUser> participants = new ArrayList<>();
+        participants.add(conversationCreator);
+        participants.add(invitedParticipant);
+        savedConversation.setParticipants(participants);
+        return ConversationMapper.conversationToConversationDTO(savedConversation);
     }
 
     private String getUUID() {
